@@ -13,6 +13,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Generate compile_commands.json 
 
 add_subdirectory(utils)
 add_subdirectory(lock_free)
+add_subdirectory(locked)
+add_subdirectory(tests)
 
 add_executable(${PROJECT_NAME} main.cpp)
 

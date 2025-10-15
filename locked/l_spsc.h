@@ -1,4 +1,3 @@
-#include <iostream>
 #include <mutex>
 #include <vector>
 #include<stddef.h>
@@ -16,7 +15,6 @@ public:
         tail = 0;
     }
     bool push(const T& item){
-        std::cout << tail << " " << head << " " << item << '\n';
         std::scoped_lock<std::mutex> scop_lock(mtx);
         if(tail - head == capacity){
             return false;
