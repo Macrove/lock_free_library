@@ -1,6 +1,9 @@
 #pragma once
+#include <pthread.h>
+#include <sched.h>
 #include<stddef.h>
 #include<assert.h>
+#include <thread>
 
 #define CACHE_LINE_SIZE 64
 
@@ -16,4 +19,11 @@ inline size_t ceil_pow_of_2(size_t val){
     val |= (val >> 32);
 #endif
     return val+1;
+}
+
+inline void pin_thread_to_core(std::thread &t, int core_id){
+    cpu_set_t cpu_set;
+    CPU_ZERO(&cpu_set);
+    CPU_SET(core_id, &cpu_set);
+    pthread_setaffinity_np(t.native_handle(), sizeof(cpu_set), &cpu_set);
 }
