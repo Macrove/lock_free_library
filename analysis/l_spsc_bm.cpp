@@ -8,7 +8,6 @@
 std::atomic<bool> PRODUCER_FINISHED(false);
 
 void produce_l(locked::SPSCQueue<int> &q, int push_el){
-    PRODUCER_FINISHED.store(false, std::memory_order_acquire);
     for(int i=0;i<push_el;i++)
         while(!q.push(i)){}
     PRODUCER_FINISHED.store(true, std::memory_order_release);
@@ -16,21 +15,23 @@ void produce_l(locked::SPSCQueue<int> &q, int push_el){
 
 void consume_l(locked::SPSCQueue<int> &q){
     int x;
-    while(!PRODUCER_FINISHED.load(std::memory_order_acquire) || q.pop(x)){
+    while(!PRODUCER_FINISHED.load(std::memory_order_relaxed)){
         while (q.pop(x)){}
     }
 }
 
 void locked_push_and_pop_bm(int push_el){
+    PRODUCER_FINISHED.store(false, std::memory_order_acquire);
     auto q = locked::SPSCQueue<int>(1e4);
     auto producer = std::thread(produce_l, std::ref(q), push_el);
     auto consumer = std::thread(consume_l, std::ref(q));
-    pin_thread_to_core(producer, 2);
-    pin_thread_to_core(consumer, 3);
+    //pin_thread_to_core(producer, 2);
+    //pin_thread_to_core(consumer, 3);
     producer.join();
     consumer.join();
 }
 void locked_push_bm(int push_el){
+    PRODUCER_FINISHED.store(false, std::memory_order_acquire);
     auto q = locked::SPSCQueue<int>(1e3);
     auto producer = std::thread(produce_l, std::ref(q), push_el);
     pin_thread_to_core(producer, 2);
@@ -62,7 +63,7 @@ static void BM_PUSH_THEN_POP_SPSC(benchmark::State& state) {
 }
 
 // Register the function as a benchmark
-BENCHMARK(BM_PUSH_POP_SPSC)-> RangeMultiplier(10) -> Range(1e3, 1e6);
+BENCHMARK(BM_PUSH_POP_SPSC)-> RangeMultiplier(10) -> Range(1e1, 1e5);
 //BENCHMARK(BM_PUSH_THEN_POP_SPSC)-> RangeMultiplier(10) -> Range(1e3, 1e7);
 // Run the benchmark
 BENCHMARK_MAIN();

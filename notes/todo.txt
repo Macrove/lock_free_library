@@ -16,11 +16,20 @@ Phase 1: Lock-Free SPSC vs Locked SPSC
 3. Pin Threads to CPU Cores
   To reduce OS scheduler noise.
   To-Do:
-    Use OS-level APIs for core pinning:pthread_setaffinity_np
-    Pin producer to one core, consumer to another adjacent core (on the same NUMA node ideally).
-    Benchmark with and without pinning to observe impact.
-    can wrap this into a utility function or RAII class for cleaner code.
-    NOTE DOWN how you did the isolations and your other notes
+    // command to check isolated cpus - cat /sys/devices/system/cpu/isolated
+    // command to check hyperthreading enabled : cat /sys/devices/system/cpu/smt/active
+    // disable hyperthreading - reboot > grub's UEFI firmware settings > mark intel hyperthreading tech as disabled
+    // how to isolate cpus
+    //    cat /proc/interrupts - shows the IRQ spread
+    //    vim /etc/default/irqbalance , add this line, IRQBALANCE_BANNED_CPUS=0xC. 0xC bans 2 and 3 from irq spread. if irqbalance not installed, then sudo apt install irqbalance. then ban
+    //    vim /etc/default/grub
+    //      modify "GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"" to this "GRUB_CMDLINE_LINUX_DEFAULT="quiet splash isolcpus=2,3 nohz_full=2,3 rcu_nocbs=2,3""
+    //          quite is for logging during boot, splash is also useless. can remove both, isolcpu is for u. nohz_full, no timer interrupts, rcu_nocbs - no rcu callbacks. read copy update callbacks. beto manage system procs
+    // disable cpu scaling for google benchmark - sudo cpupower frequency-set --governor performance
+    Use OS-level APIs for core pinning:pthread_setaffinity_np                                                                                       DONE
+    Pin producer to one core, consumer to another adjacent core (on the same NUMA node ideally).                                                    DONE
+    Benchmark with and without pinning to observe impact
+    NOTE DOWN how you did the isolations and your other notes                                                                                       DONE
 
 4. Profile Hotspots (Micro-optimization Focus)
   Figure out which parts of your SPSC queue implementation are causing overhead.
