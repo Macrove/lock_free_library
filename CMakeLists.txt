@@ -13,6 +13,8 @@ add_subdirectory(locked)
 add_subdirectory(tests)
 add_subdirectory(analysis)
 
+add_compile_options(-O3)
+
 #add_executable(${PROJECT_NAME} main.cpp)
 
 #target_link_libraries(${PROJECT_NAME}

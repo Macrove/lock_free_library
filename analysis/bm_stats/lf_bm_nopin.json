@@ -1,0 +1,155 @@
+{
+  "context": {
+    "date": "2025-11-01T15:56:48+05:30",
+    "host_name": "asgard",
+    "executable": "./lf_spsc_bm",
+    "num_cpus": 4,
+    "mhz_per_cpu": 4100,
+    "cpu_scaling_enabled": false,
+    "aslr_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8388608,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [0.981934,0.716309,0.402832],
+    "library_version": "v1.9.4-58-g6d1aced6",
+    "library_build_type": "release",
+    "json_schema_version": 1
+  },
+  "benchmarks": [
+    {
+      "name": "BM_PUSH_POP_SPSC/10",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "BM_PUSH_POP_SPSC/10",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13740,
+      "real_time": 7.0021552984955895e+04,
+      "cpu_time": 5.0856004221251831e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/100",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "BM_PUSH_POP_SPSC/100",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13176,
+      "real_time": 7.6619960457376641e+04,
+      "cpu_time": 5.2822659380692166e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/1000",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "BM_PUSH_POP_SPSC/1000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 12999,
+      "real_time": 1.2113608185291298e+05,
+      "cpu_time": 5.3600357950611578e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/10000",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "BM_PUSH_POP_SPSC/10000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13015,
+      "real_time": 7.4577719915529073e+05,
+      "cpu_time": 5.3566120476373391e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/100000",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "BM_PUSH_POP_SPSC/100000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1000,
+      "real_time": 6.6312402680050582e+06,
+      "cpu_time": 5.3486029000000104e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/1000000",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "BM_PUSH_POP_SPSC/1000000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 100,
+      "real_time": 6.3861605619895265e+07,
+      "cpu_time": 5.4174069999999301e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/10000000",
+      "family_index": 0,
+      "per_family_instance_index": 6,
+      "run_name": "BM_PUSH_POP_SPSC/10000000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 10,
+      "real_time": 6.4434579759981716e+08,
+      "cpu_time": 6.1197600000006962e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/100000000",
+      "family_index": 0,
+      "per_family_instance_index": 7,
+      "run_name": "BM_PUSH_POP_SPSC/100000000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.1687400619994154e+09,
+      "cpu_time": 6.7103000000123808e+04,
+      "time_unit": "ns"
+    }
+  ]
+}

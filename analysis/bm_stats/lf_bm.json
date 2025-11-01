@@ -1,0 +1,127 @@
+{
+  "context": {
+    "date": "2025-11-01T15:03:14+05:30",
+    "host_name": "asgard",
+    "executable": "./lf_spsc_bm",
+    "num_cpus": 4,
+    "mhz_per_cpu": 4100,
+    "cpu_scaling_enabled": false,
+    "aslr_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8388608,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [0.137207,0.460449,0.353027],
+    "library_version": "v1.9.4-58-g6d1aced6",
+    "library_build_type": "release",
+    "json_schema_version": 1
+  },
+  "benchmarks": [
+    {
+      "name": "BM_PUSH_POP_SPSC/10",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "BM_PUSH_POP_SPSC/10",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13763,
+      "real_time": 7.5457751870626380e+04,
+      "cpu_time": 5.0684877715614341e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/100",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "BM_PUSH_POP_SPSC/100",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13238,
+      "real_time": 7.2011665961719787e+04,
+      "cpu_time": 5.2740791358211201e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/1000",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "BM_PUSH_POP_SPSC/1000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13046,
+      "real_time": 1.2150224229666506e+05,
+      "cpu_time": 5.3391538785834739e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/10000",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "BM_PUSH_POP_SPSC/10000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13091,
+      "real_time": 7.5876365777968010e+05,
+      "cpu_time": 5.3110909861737055e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/100000",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "BM_PUSH_POP_SPSC/100000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1000,
+      "real_time": 7.0268321430048672e+06,
+      "cpu_time": 5.5760287000000026e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_PUSH_POP_SPSC/1000000",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "BM_PUSH_POP_SPSC/1000000",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 100,
+      "real_time": 7.1540656279976249e+07,
+      "cpu_time": 5.6395889999998340e+04,
+      "time_unit": "ns"
+    }
+  ]
+}

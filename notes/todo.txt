@@ -4,7 +4,7 @@ Phase 1: Lock-Free SPSC vs Locked SPSC
   b. Make sure both push() and pop() operations are blocking-free for correctness comparison.                                                     DONE
   c. Ensure that both implementations (lock-free and locked) have identical APIs.                                                                 DONE
 2. Set Up Benchmarking Environment (Google Benchmark)
-  Consistently and correctly measure the performance of each queue under a controlled test.
+  Consistently and correctly measure the performance of each queue under a controlled test.                                                       DONE
   To-Do:
     Create Google Benchmark tests for:
       push then pop                                                                                                                               DONE
@@ -28,7 +28,7 @@ Phase 1: Lock-Free SPSC vs Locked SPSC
     // disable cpu scaling for google benchmark - sudo cpupower frequency-set --governor performance
     Use OS-level APIs for core pinning:pthread_setaffinity_np                                                                                       DONE
     Pin producer to one core, consumer to another adjacent core (on the same NUMA node ideally).                                                    DONE
-    Benchmark with and without pinning to observe impact
+    Benchmark with and without pinning to observe impact                                                                                            HOWTF. DONE
     NOTE DOWN how you did the isolations and your other notes                                                                                       DONE
 
 4. Profile Hotspots (Micro-optimization Focus)
@@ -46,66 +46,11 @@ Phase 1: Lock-Free SPSC vs Locked SPSC
 5. Reduce Measurement Variance
   To get stable and repeatable results.
   To-Do:
-    Disable turbo boost, power saving (e.g., via BIOS or cpupower frequency-set)
-    Isolate CPU cores (e.g., with isolcpus= kernel flag)
+    Disable turbo boost, power saving (e.g., via BIOS or cpupower frequency-set)                                                        DONE
+    Isolate CPU cores (e.g., with isolcpus= kernel flag)                                                                                DONE
     Run benchmarks on idle system (e.g., boot into a clean runlevel)
-    Use taskset or numactl for further control
-
-Phase 2: Statistical Comparison (U-Test, Confidence Intervals)
-6. Extract Raw Benchmark Data
-  To-Do:
-  Use --benchmark_out=output.json with Google Benchmark
-  Write a script (Python or R) to:
-  Load timing data
-  Calculate mean, median, stddev, variance
-  Plot histograms / violin plots
-
-7. Apply Statistical Tests (U-Test)
-  The Mann–Whitney U-test is great when comparing two independent samples (non-parametric).
-  Tools:
-    Python: scipy.stats.mannwhitneyu
-    R: wilcox.test()
-  TODO:
-  Collect ~30 runs of each benchmark (to get proper distributions)
-  Perform U-test on:
-    push() latency
-    pop() latency
-    combined throughput
-    Report p-value and confidence level (e.g., 95% confidence that lock-free is faster)
-
-Phase 3: Visualization & Reporting
-8. Plotting and Diagrams
-    To-Do:
-      Plot latency histograms for each queue (lock-free vs locked)
-      Line plots of throughput vs time
-      CPU usage graphs (optional)
-      Add diagrams of queue structure:
-      One for locked SPSC
-      One for lock-free SPSC (highlight cacheline layout, atomic ops, etc.)
-
-Phase 4: Queue Library Foundation
-9. Structure the Repo
-  To-Do:
-    Organize each queue type into separate modules:
-      /include/lockfree/
-          spsc.hpp
-          mpsc.hpp
-          ...
-      /benchmark/
-          bench_spsc_locked.cpp
-          bench_spsc_lockfree.cpp
-      /test/
-          test_spsc.cpp
 
 
-    Abstract common benchmarking utilities (e.g., thread pinning, test runners)
 
-Phase 5: Iterate for Other Queues (MPSC, MPMC, etc.)
+NEXT PHASE: Iterate for Other Queues (MPSC, MPMC, etc.)
 
-Once SPSC is rock solid and well-benchmarked:
-
-Optional (Advanced Goals)
-  Add memory reclamation strategies (Hazard pointers, epoch-based GC)
-  Compare bounded vs unbounded queues
-  Try using std::atomic_ref (C++20) or seqlock for low-contention scenarios
-  Add false sharing tests (using padding, alignas(64))
